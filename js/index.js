@@ -10,13 +10,10 @@ function renderNotePage(){
 function renderNoteListItems(){
     for(let i = 0; i < localStorage.length; i++){
         const card = document.createElement("li");
-        let temp = localStorage.key(i).title;
+        let temp = localStorage.key(i);
         card.textContent = temp;
         card.classList.add('button-43');
         card.addEventListener('click', viewNote.bind(this.temp))
-        const span = document.createElement("span")
-        span.innerHTML = temp;
-        card.appendChild(span)
         document.querySelector("#nls").appendChild(card);
       }
 }
@@ -38,8 +35,9 @@ function saveNote(){
 function viewNote(keyTitle){
     window.location.href = "/html/noteScreen.html";
     const view = localStorage.getItem(keyTitle);
-    document.querySelector("#title").innerHTML = keyTitle;
-    document.querySelector("#note").innerHTML = view.note;
+    console.log(localStorage[view])
+    document.querySelector("#title").value = keyTitle;
+    document.querySelector("#note").innerHTML = view;
 }
 
 function copyAll(){
