@@ -9,8 +9,16 @@ document.querySelector("#underline").addEventListener('click', underline());
 window.noteList = {};
 function getDataFromLocalStorage(){
     window.noteList = JSON.parse(localStorage.getItem('noteList'));
+    if(!(localStorage.getItem("noteList")))
+    {
+        return
+    }
+      window.noteList = JSON.parse(localStorage.getItem("noteList"));
 }
+
 getDataFromLocalStorage();
+
+
 function renderNoteListItems(){
     Object.keys(noteList).forEach((ele)=>{
         const card = document.createElement("li");

@@ -16,7 +16,7 @@ h1{
     text-align: center;
 }
 #nls{
-    height: 37vw;
+    height: 40vw;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -46,6 +46,21 @@ h1{
   transform: scale(1.1);
 }
 
+.ftr{
+  font-family: 'Poppins', sans-serif;
+  width: 100%;
+  height: 5vw;
+  justify-content: center;
+  align-items: center;
+  font-weight: lighter;
+  display: flex;
+  font-size: 1.5vw;
+  background-color: #B4A9A9;
+  position: fixed;
+  bottom: 0;
+}
+
+
 @media (min-width: 768px) {
   .button-43 {
     padding: 1rem 2rem;
@@ -54,15 +69,7 @@ h1{
 a{
     text-decoration: none;
 }
-.ftr{
-    font-family: 'Poppins', sans-serif;
-    font-weight: lighter;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.5vw;
-    background-color: #B4A9A9;
-}
+
 @media only screen and (max-width:1725px)
 {
   html,body {
