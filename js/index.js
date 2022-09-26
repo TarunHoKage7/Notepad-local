@@ -1,21 +1,22 @@
-document.querySelector("#goHome").addEventListener('click', renderNoteListItems());
+document.querySelector("#goHome").addEventListener('click', goHome());
 document.querySelector("#save").addEventListener('click', saveNote());
 document.querySelector("#delete").addEventListener('click', deleteNote());
 document.querySelector("#copyAll").addEventListener('click', copyAll());
 document.querySelector("#bold").addEventListener('click', bold());
-document.querySelector("#italic").addEventListener('click', italic());
+//document.querySelector("#italic").addEventListener('click', italic());
 document.querySelector("#underline").addEventListener('click', underline());
-document.querySelector("#goNote").addEventListener('click', viewNote(keyTitle));
-
+//document.querySelector("#goNote").addEventListener('click', viewNote(keyTitle));
+window.noteList = {};
 function getDataFromLocalStorage(){
-    let noteList = JSON.parse(localStorage.getItem('noteList')||"[]");
+    window.noteList = JSON.parse(localStorage.getItem('noteList'));
 }
-
+getDataFromLocalStorage();
 function renderNoteListItems(){
-    noteList.forEach((note)=>{
+    Object.keys(noteList).forEach((ele)=>{
         const card = document.createElement("li");
-        card.textContent = note.title;
-        card.classList.add('note');
+        card.textContent = ele.title;
+        card.classList.add('button-43');
+        card.addEventListener('click', viewNote(ele.title))
         document.querySelector("#nls").appendChild(card);
       })
 }
@@ -27,6 +28,10 @@ function refreshDataView(){
 
 refreshDataView();
 
+function goHome(){
+    refreshDataView();
+}
+
 function initNote(){
     //p: null
     //r: null
@@ -37,15 +42,17 @@ function initNote(){
 function deleteNote(keyTitle){
     //remove a note from the noteList with that title
     localStorage.removeItem(keyTitle);
-    refreshDataView();
 }
 
 function saveNote(){
     //check for a note with that title and update it or create it
-    let title = document.getElementById('title').title.innerHTML;
-    let note = document.querySelector('#note').innerHTML;
+    let title = JSON.stringify(document.getElementById('title').innerHTML);
+    let note = JSON.stringify(document.querySelector('#note').innerHTML);
 
-    localStorage.setItem(title, note);
+    noteList[title] = note;
+    console.log(title)
+    console.log(noteList[title])
+
     //if(window.noteList.some(note => note.title == this.title))//handling repititions
     //{
     //    return window.alert("A note with that title is already in the List.");
@@ -59,12 +66,16 @@ function viewNote(keyTitle){
 
 function copyAll(){
     //select all text
-    this.focus();
-    this.select();
+    //this.focus();
+    //this.select();
+    let note = document.querySelector('#note');
+    note.focus();
+    note.select();
     document.execCommand('copy');
 }
 
 function bold(){
+    var input = window.getSelection();
     if (input.selectionStart == input.selectionEnd) {
         return;
     }
@@ -74,17 +85,18 @@ function bold(){
     input.setRangeText(`${selected}`);
 }
 
-function italic(){
-    if (input.selectionStart == input.selectionEnd) {
-        return;
-    }
-
-    let selected = input.value.slice(input.selectionStart, input.selectionEnd);
-    selected.style.fontStyle = 'italic';
-    input.setRangeText(`${selected}`);
-}
+//function italic(){
+//    if (input.selectionStart == input.selectionEnd) {
+//        return;
+//    }
+//
+//    let selected = input.value.slice(input.selectionStart, input.selectionEnd);
+//    selected.style.fontStyle = 'italic';
+//    input.setRangeText(`${selected}`);
+//}
 
 function underline(){
+    var input = window.getSelection();
     if (input.selectionStart == input.selectionEnd) {
         return;
     }
