@@ -5,6 +5,7 @@ document.querySelector("#copyAll").addEventListener('click', copyAll());
 document.querySelector("#bold").addEventListener('click', bold());
 document.querySelector("#italic").addEventListener('click', italic());
 document.querySelector("#underline").addEventListener('click', underline());
+document.querySelector("#goNote").addEventListener('click', viewNote(keyTitle));
 
 function getDataFromLocalStorage(){
     let noteList = JSON.parse(localStorage.getItem('noteList')||"[]");
@@ -35,23 +36,25 @@ function initNote(){
 
 function deleteNote(keyTitle){
     //remove a note from the noteList with that title
-    
+    localStorage.removeItem(keyTitle);
+    refreshDataView();
 }
 
 function saveNote(){
     //check for a note with that title and update it or create it
-    let title = document.getElementById('title').title.valuel;
+    let title = document.getElementById('title').title.innerHTML;
+    let note = document.querySelector('#note').innerHTML;
 
-    if(window.noteList.some(note => note.title == this.title))//handling repititions
-    {
-        return window.alert("A note with that title is already in the List.");
-    }
-
-    
+    localStorage.setItem(title, note);
+    //if(window.noteList.some(note => note.title == this.title))//handling repititions
+    //{
+    //    return window.alert("A note with that title is already in the List.");
+    //}
 }
 
 function viewNote(keyTitle){
-    
+    document.querySelector("#title").innerHTML = keyTitle;
+    document.querySelector("note").innerHTML = noteList[`${keyTitle}`];
 }
 
 function copyAll(){
