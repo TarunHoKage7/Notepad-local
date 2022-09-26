@@ -3,6 +3,11 @@
     padding: 0 0;
 }
 
+section{
+  background-color: #E0D0D0;
+  height: 80%;
+}
+
 ul{
   list-style: none;
 }
@@ -10,17 +15,17 @@ ul{
 header{
     background-color: #B4A9A9;
     font-family: 'Poppins', sans-serif;
+    height: 10%;
 }
 h1{
     padding: 2vw;
     text-align: center;
 }
 #nls{
-    height: 40vw;
     display: flex;
+    height: 100%;
     justify-content: center;
     align-items: center;
-    background-color: #E0D0D0;
 }
 .button-43 {
   /*background-image: linear-gradient(-180deg, #37AEE2 0%, #1E96C8 100%);*/
@@ -49,7 +54,7 @@ h1{
 .ftr{
   font-family: 'Poppins', sans-serif;
   width: 100%;
-  height: 5vw;
+  height: 10%;
   justify-content: center;
   align-items: center;
   font-weight: lighter;
