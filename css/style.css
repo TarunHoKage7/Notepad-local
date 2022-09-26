@@ -3,6 +3,10 @@
     padding: 0 0;
 }
 
+ul{
+  list-style: none;
+}
+
 header{
     background-color: #B4A9A9;
     font-family: 'Poppins', sans-serif;
