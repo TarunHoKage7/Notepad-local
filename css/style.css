@@ -42,8 +42,8 @@ h1{
   width: 16vw;
   border: 0;
   cursor: pointer;
-  user-select: none;
   -webkit-user-select: none;
+  user-select: none;
   touch-action: manipulation;
 }
 

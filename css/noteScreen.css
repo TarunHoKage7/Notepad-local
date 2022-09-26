@@ -82,7 +82,4 @@ img:hover{
         width: 8vw;
         height: auto;
     }
-    html{
-        max-height: fit-content;
-    }
 }

@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet"> 
     <title>NoteStore</title>
 </head>
-<body>
+<body onload="renderNoteListItems()">
     <header>
         <h1>NoteStore</h1>
     </header>
@@ -19,7 +19,7 @@
     <section>
         <ul id="nls">
             <li>
-                <a href="/html/noteScreen.html"><button type="submit" class="button-43">New note</button></a>
+                <a id="goNote" href="/html/noteScreen.html"><button type="submit" class="button-43">New note</button></a>
             </li>
         </ul>
     </section>

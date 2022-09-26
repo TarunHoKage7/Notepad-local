@@ -1,16 +1,22 @@
-document.querySelector("#save").addEventListener('click', saveNote());
-document.querySelector("#delete").addEventListener('click', deleteNote());
-document.querySelector("#copyAll").addEventListener('click', copyAll());
-document.querySelector("#bold").addEventListener('click', bold());
-document.querySelector("#underline").addEventListener('click', underline());
+function renderNotePage(){
+    document.querySelector("#save").addEventListener('click', saveNote());
+    document.querySelector("#delete").addEventListener('click', deleteNote());
+    document.querySelector("#copyAll").addEventListener('click', copyAll());
+    document.querySelector("#bold").addEventListener('click', bold());
+    document.querySelector("#underline").addEventListener('click', underline());
+    document.querySelector("#goHome").addEventListener('click', renderNoteListItems())
+}
 
 function renderNoteListItems(){
     for(let i = 0; i < localStorage.length; i++){
         const card = document.createElement("li");
         let temp = localStorage.key(i).title;
-        card.innerHTML = temp;
+        card.textContent = temp;
         card.classList.add('button-43');
-        card.addEventListener('click', viewNote(`${temp}`))
+        card.addEventListener('click', viewNote.bind(this.temp))
+        const span = document.createElement("span")
+        span.innerHTML = temp;
+        card.appendChild(span)
         document.querySelector("#nls").appendChild(card);
       }
 }
@@ -30,6 +36,7 @@ function saveNote(){
 }
 
 function viewNote(keyTitle){
+    window.location.href = "/html/noteScreen.html";
     const view = localStorage.getItem(keyTitle);
     document.querySelector("#title").innerHTML = keyTitle;
     document.querySelector("#note").innerHTML = view.note;
