@@ -1,3 +1,4 @@
+# The Site is currently deployed at https://localnotepad.netlify.app/
 # A web-based notepad application:
 1. The Application is a responsive web-local storage based notepad application. 
 2. A user can create and use multiple notes and has access to basic font based styling options as of now.
