@@ -46,7 +46,7 @@ function renderNoteListItems(){
             const card = document.createElement("li");
             //getting the title
             let temp = allNotes[i][0]
-
+            temp = temp.slice(0, 25)
             //creating an id here so we can access the notes quickly
             card.dataset.id = i;
             card.textContent = temp;
