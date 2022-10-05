@@ -1,83 +1,64 @@
-function renderNotePage(){
-    document.querySelector("#save").addEventListener('click', saveNote());
-    document.querySelector("#delete").addEventListener('click', deleteNote());
-    document.querySelector("#copyAll").addEventListener('click', copyAll());
-    document.querySelector("#bold").addEventListener('click', bold());
-    document.querySelector("#underline").addEventListener('click', underline());
-    document.querySelector("#goHome").addEventListener('click', renderNoteListItems())
+// Add the current selected note in the localStorage for easy retrieval
+document.querySelector('#goNote').addEventListener('click', newNote());
+
+function newNote(){
+    localStorage.setItem('currentNote', '[" " , " "]')
 }
 
+function setCurrentNote(noteId, title, description){
+
+    let currentNote = {
+        id: noteId,
+        title: title,
+        description: description
+    }
+    localStorage.setItem('currentNote', JSON.stringify(currentNote))
+    // create a special place in the localStorage for the current note.innerHTML
+    // When changing location, we will lost
+
+    // just to ensure to wait for traitment to be done before changing location
+    setTimeout(function() {
+        window.location.href = "/html/noteScreen.html";
+    },0);
+}
+
+// Render the list of notes
 function renderNoteListItems(){
-    for(let i = 0; i < localStorage.length; i++){
-        const card = document.createElement("li");
-        let temp = localStorage.key(i);
-        card.textContent = temp;
-        card.classList.add('button-43');
-        card.addEventListener('click', viewNote.bind(this.temp))
-        document.querySelector("#nls").appendChild(card);
-      }
-}
+    //localStorage.setItem('currentNote' , "");
+    const nls =  document.querySelector("#nls");
+    if(nls){
 
-function deleteNote(keyTitle){
-    //remove a note from the noteList with that title
-    localStorage.removeItem(keyTitle);
-}
+        let allNotes;
 
-function saveNote(){
-    //check for a note with that title and update it or create it
-    let titleSave = JSON.stringify(document.getElementById('title').innerHTML);
-    let noteSave = JSON.stringify(document.querySelector('#note').innerHTML);
-    if(titleSave && noteSave){
-        localStorage.setItem(titleSave, noteSave)
+        // check if the note exists
+        if(localStorage.hasOwnProperty("notes"))
+        {
+            // retrieve it as an array
+            allNotes = JSON.parse(localStorage.getItem('notes'));
+        } else {
+            allNotes = [];
+        }
+
+
+        let len = allNotes.length
+
+        for(let i = 0; i < len; i++){
+            const card = document.createElement("li");
+            //getting the title
+            let temp = allNotes[i][0]
+
+            //creating an id here so we can access the notes quickly
+            card.dataset.id = i;
+            card.textContent = temp;
+            card.classList.add('button-43');
+            nls.appendChild(card);
+            // send the current id, the title and the description to the function.
+            card.addEventListener('click',function(){
+                setCurrentNote(i,allNotes[i][0],allNotes[i][1])
+            })
+        }
     }
 }
 
-function viewNote(keyTitle){
-    window.location.href = "/html/noteScreen.html";
-    const view = localStorage.getItem(keyTitle);
-    console.log(localStorage[view])
-    document.querySelector("#title").value = keyTitle;
-    document.querySelector("#note").innerHTML = view;
-}
-
-function copyAll(){
-    //select all text
-    //this.focus();
-    //this.select();
-    let note = document.querySelector('#note');
-    note.focus();
-    note.select();
-    document.execCommand('copy');
-}
-
-function bold(){
-    var input = window.getSelection();
-    if (input.selectionStart == input.selectionEnd) {
-        return;
-    }
-
-    let selected = input.value.slice(input.selectionStart, input.selectionEnd);
-    selected.style.fontWeight = 'bold';
-    input.setRangeText(`${selected}`);
-}
-
-//function italic(){
-//    if (input.selectionStart == input.selectionEnd) {
-//        return;
-//    }
-//
-//    let selected = input.value.slice(input.selectionStart, input.selectionEnd);
-//    selected.style.fontStyle = 'italic';
-//    input.setRangeText(`${selected}`);
-//}
-
-function underline(){
-    var input = window.getSelection();
-    if (input.selectionStart == input.selectionEnd) {
-        return;
-    }
-
-    let selected = input.value.slice(input.selectionStart, input.selectionEnd);
-    selected.style.textDecoration = 'underline';
-    input.setRangeText(`${selected}`);
-}
+// call it
+renderNoteListItems();

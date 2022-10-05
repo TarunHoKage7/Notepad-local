@@ -7,13 +7,14 @@
     <link rel="stylesheet" href="/css/noteScreen.css">
     <title>Note Screen</title>
 </head>
-<body onload="renderNotePage()">
+<body>
+    <div class="top"></div>
     <header>
-        <input id="title" label="title" placeholder="Title">
+        <input id="title" label="title" placeholder="Enter your Title here">
     </header>
 
     <section id="notepad">
-        <textarea id="note" placeholder="Your notes go here"></textarea>
+        <div id="note" placeholder="Your notes go here" contentEditable="true"></div>
         <div class="toolkit">
             <div id="goHome" class="tool"><a href="/index.html"><img src="https://cdn.pixabay.com/photo/2016/03/31/18/42/home-1294564__480.png" alt="icon"></a></div>
             <div id="copyAll" class="tool"><img src="https://cdn.pixabay.com/photo/2021/11/01/05/21/content-6759435__480.png" alt="icon"></div>
@@ -26,5 +27,6 @@
     
 
     <script src="/js/index.js"></script>
+    <script src="/js/notes.js"></script>
 </body>
 </html>

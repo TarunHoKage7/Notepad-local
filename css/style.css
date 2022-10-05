@@ -17,17 +17,30 @@ header{
     font-family: 'Poppins', sans-serif;
     height: 10%;
 }
+
 h1{
     padding: 2vw;
     text-align: center;
 }
+
 #nls{
     display: flex;
     height: 100%;
     justify-content: center;
     align-items: center;
 }
-.button-43 {
+#nls > li{
+  margin: 1rem;
+}
+
+header{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+}
+
+.btn, .button-43 {
   /*background-image: linear-gradient(-180deg, #37AEE2 0%, #1E96C8 100%);*/
   background-color: black;
   font-family: 'Poppins', sans-serif;
@@ -45,6 +58,10 @@ h1{
   -webkit-user-select: none;
   user-select: none;
   touch-action: manipulation;
+}
+
+.btn-primary {
+  background-color: #37AE00
 }
 
 .button-43:hover {
@@ -65,15 +82,16 @@ h1{
   bottom: 0;
 }
 
+a{
+  text-decoration: none;
+}
+
 
 @media (min-width: 768px) {
   .button-43 {
     padding: 1rem 2rem;
   }
-}
-a{
-    text-decoration: none;
-}
+  }
 
 @media only screen and (max-width:1725px)
 {
