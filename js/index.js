@@ -2,7 +2,7 @@
 document.querySelector('#goNote').addEventListener('click', newNote());
 
 function newNote(){
-    localStorage.setItem('currentNote', '[" " , " "]')
+    localStorage.removeItem('currentNote');
 }
 
 function setCurrentNote(noteId, title, description){

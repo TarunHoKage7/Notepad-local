@@ -20,10 +20,6 @@ function displayCurrentNote() {
     {
         currentNote = JSON.parse(localStorage.getItem('currentNote'))
         console.log(currentNote);
-        if(!currentNote.title || !currentNote.description){
-            noteTitle.value = " ";
-            noteArea.value = " ";
-        }
         noteTitle.value = currentNote.title
         noteArea.innerHTML = currentNote.description;
         // Adding an event listener to be able to delete this note,
@@ -89,12 +85,16 @@ function deleteNote(noteId){
     if(localStorage.hasOwnProperty('notes'))
     {
         notes = JSON.parse(localStorage.getItem('notes'));
-
+        if(notes.length == 1){
+            localStorage.clear();
+        }
+        else {
         //delete the array index pointing to the current note
-        notes = notes.splice(noteId,1)
+        notes.splice(noteId,1)
+        console.log(notes)
 
-        localStorage.setItem('notes',notes);
-
+        localStorage.setItem('notes',JSON.stringify(notes));
+        }
         //clearing the view
         noteTitle.value = ''
         noteArea.innerHTML = '';

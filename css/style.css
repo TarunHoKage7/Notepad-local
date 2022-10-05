@@ -52,12 +52,15 @@ header{
   justify-content: center;
   padding: 1rem 1.75rem;
   text-decoration: none;
-  width: 16vw;
+  /*width: 16vw;*/
+  width: auto;
   border: 0;
   cursor: pointer;
   -webkit-user-select: none;
   user-select: none;
   touch-action: manipulation;
+  text-overflow: ellipsis;
+  word-wrap: break-all;
 }
 
 .btn-primary {
