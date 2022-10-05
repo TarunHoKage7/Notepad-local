@@ -4,7 +4,7 @@
 }
 
 section{
-  background-color: #E0D0D0;
+  background-color: #c0b7b7;
   height: 80%;
 }
 
@@ -54,6 +54,7 @@ header{
   text-decoration: none;
   /*width: 16vw;*/
   width: auto;
+  max-width: 16vw;
   border: 0;
   cursor: pointer;
   -webkit-user-select: none;
