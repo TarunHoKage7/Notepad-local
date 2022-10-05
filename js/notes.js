@@ -20,6 +20,10 @@ function displayCurrentNote() {
     {
         currentNote = JSON.parse(localStorage.getItem('currentNote'))
         console.log(currentNote);
+        if(!currentNote.title || !currentNote.description){
+            noteTitle.value = " ";
+            noteArea.value = " ";
+        }
         noteTitle.value = currentNote.title
         noteArea.innerHTML = currentNote.description;
         // Adding an event listener to be able to delete this note,
